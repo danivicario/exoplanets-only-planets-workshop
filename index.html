@@ -165,6 +165,10 @@
     let camera, scene, renderer;
     let geometry, material, mesh;
 
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+
     function randomFloat(min, max) {
       return Math.random() * (max - min) + min;
     }
@@ -174,13 +178,15 @@
 
     function init() {
       camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 10);
-      camera.position.z = 1.5;
+      camera.position.z = 3;
       camera.position.x = 1;
 
       scene = new THREE.Scene();
 
+      let randomPositions = [...new Set(Array(1000).fill().map(x => randomInt(1, 24)))]
+
       Array(5).fill().forEach((x, idx) => {
-        let texture = new THREE.TextureLoader().load(`img/planet${idx + 1}.jpg`);
+        let texture = new THREE.TextureLoader().load(`img/planet${randomPositions[idx]}.jpg`);
         let geometry = new THREE.SphereGeometry(randomFloat(.05, .125), 40, 40);
         let material = new THREE.MeshBasicMaterial({ map: texture });
         mesh = new THREE.Mesh(geometry, material);
