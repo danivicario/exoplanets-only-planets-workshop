@@ -11,7 +11,7 @@
   "author": "Dani Vicario",
   "license": "ISC",
   "dependencies": {
-    "http-server": "^0.11.1",
+    "http-server": "^0.11.2",
     "three": "^0.106.2"
   }
 }
